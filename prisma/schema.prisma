@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  PENDING
+}
+
+enum PricingInterval {
+  MONTH
+  YEAR
+}
+
+enum CompanySize {
+  STARTUP
+  SMALL
+  MEDIUM
+  LARGE
+  ENTERPRISE
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  icon        String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  pricingPlans PricingPlan[]
+  subscriptions Subscription[]
+}
+
+model PricingPlan {
+  id          String   @id @default(cuid())
+  name        String
+  price       Decimal  @db.Decimal(10, 2)
+  interval    PricingInterval @default(MONTH) 
+  features    String[] @default([])
+  isPopular   Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  subscriptions Subscription[]
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String?
+  company       String?
+  companySize   CompanySize?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  pricingPlanId String
+  pricingPlan   PricingPlan @relation(fields: [pricingPlanId], references: [id], onDelete: Cascade)
+  status        SubscriptionStatus @default(ACTIVE) 
+  startDate     DateTime @default(now())
+  endDate       DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
