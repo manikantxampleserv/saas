@@ -14,15 +14,17 @@ export function CTASection() {
           Get started with a free trial today.
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button size="lg" className="gap-2">
-            Start Free Trial
-            <ArrowRight className="h-4 w-4" />
-          </Button>
           <DemoModal>
+            <Button size="lg" className="gap-2">
+              Start Free Trial
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </DemoModal>
+          {/* <DemoModal>
             <Button size="lg" variant="outline">
               Schedule a Demo
             </Button>
-          </DemoModal>
+          </DemoModal> */}
         </div>
         <p className="mt-6 text-sm text-muted-foreground">
           No credit card required. 14-day free trial for all plans.

@@ -14,6 +14,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { Header } from "@/components/header";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -78,17 +79,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-background">
-      {/* Left Panel - Branding */}
-      <div className="hidden w-1/2 flex-col justify-between bg-card p-12 lg:flex">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent">
-            <span className="text-sm font-bold text-accent-foreground">SC</span>
-          </div>
-          <span className="text-xl font-semibold text-foreground">
-            SaaS Controllers
-          </span>
-        </Link>
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+      <div className="flex flex-1 pt-16">
+        {/* Left Panel - Branding */}
+        <div className="hidden w-1/2 flex-col justify-between bg-card p-12 lg:flex">
 
         <div className="space-y-6">
           <h1 className="text-4xl font-bold leading-tight text-foreground text-balance">
@@ -122,22 +117,6 @@ export default function LoginPage() {
 
       {/* Right Panel - Login Form */}
       <div className="flex w-full flex-col lg:w-1/2">
-        <div className="flex items-center justify-between p-6 lg:p-8">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to home
-          </Link>
-          <Link href="/" className="flex items-center gap-2 lg:hidden">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-              <span className="text-xs font-bold text-accent-foreground">
-                SC
-              </span>
-            </div>
-          </Link>
-        </div>
 
         <div className="flex flex-1 items-center justify-center px-6 pb-12 lg:px-12">
           <div className="w-full max-w-md space-y-8">
@@ -275,6 +254,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

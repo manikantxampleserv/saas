@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle2, Calendar, ArrowRight } from "lucide-react"
+import { toast } from "sonner"
+import Link from "next/link"
 
 interface DemoModalProps {
   children: React.ReactNode
@@ -44,11 +46,29 @@ export function DemoModal({ children }: DemoModalProps) {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setIsSuccess(true)
+    try {
+      const response = await fetch("/api/demo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsSuccess(true)
+        toast.success("Demo request submitted successfully!")
+      } else {
+        toast.error(data.error || "Failed to submit demo request")
+      }
+    } catch (error) {
+      console.error("Error submitting demo request:", error);
+      toast.error("Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleOpenChange = (newOpen: boolean) => {
@@ -82,7 +102,7 @@ export function DemoModal({ children }: DemoModalProps) {
             <DialogHeader className="space-y-2">
               <DialogTitle className="text-2xl">Demo Request Received</DialogTitle>
               <DialogDescription className="text-base">
-                Thank you for your interest in SaaS Controllers! Our team will contact you within 24 hours to schedule your personalized demo.
+                Thank you for your interest in MKX Industries Pvt Ltd! Our team will contact you within 24 hours to schedule your personalized demo.
               </DialogDescription>
             </DialogHeader>
             <div className="mt-6 w-full rounded-lg border border-border bg-secondary/50 p-4">
@@ -239,13 +259,13 @@ export function DemoModal({ children }: DemoModalProps) {
 
               <p className="text-center text-xs text-muted-foreground">
                 By submitting this form, you agree to our{" "}
-                <a href="#" className="underline hover:text-foreground">
+                <Link href="/privacy" className="underline hover:text-foreground">
                   Privacy Policy
-                </a>{" "}
+                </Link>{" "}
                 and{" "}
-                <a href="#" className="underline hover:text-foreground">
+                <Link href="/terms" className="underline hover:text-foreground">
                   Terms of Service
-                </a>
+                </Link>
                 .
               </p>
             </form>

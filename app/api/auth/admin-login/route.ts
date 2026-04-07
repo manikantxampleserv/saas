@@ -1,14 +1,12 @@
+import { SignJWT } from "jose";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { sql } from "@/lib/db";
 
 // Single admin credentials (in production, use environment variables)
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@saascontrollers.com";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "admin@saascontrollers.com").replace(/"/g, "");
+const ADMIN_PASSWORD = (process.env.ADMIN_PASSWORD || "admin123").replace(/"/g, "");
 
-const JWT_SECRET =
-  process.env.JWT_SECRET || "your-secret-key-change-in-production";
+const JWT_SECRET = (process.env.JWT_SECRET || "MKX").replace(/"/g, "");
+const secret = new TextEncoder().encode(JWT_SECRET);
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,16 +28,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create JWT token
-    const token = jwt.sign(
-      {
-        email: ADMIN_EMAIL,
-        role: "admin",
-        type: "admin",
-      },
-      JWT_SECRET,
-      { expiresIn: "7d" },
-    );
+    // Create JWT token using jose for consistency with middleware
+    const token = await new SignJWT({
+      email: ADMIN_EMAIL,
+      role: "admin",
+      type: "admin",
+    })
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime("7d")
+      .sign(secret);
 
     // Set HTTP-only cookie
     const response = NextResponse.json({

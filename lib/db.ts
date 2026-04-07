@@ -1,6 +1,25 @@
 import { neon } from '@neondatabase/serverless'
 
-export const sql = neon(process.env.DATABASE_URL!)
+// Mock SQL function if DATABASE_URL is missing
+const createMockSql = () => {
+  return async (strings: TemplateStringsArray, ...values: any[]) => {
+    const query = strings.join('?')
+    console.warn(`Database query skipped (DATABASE_URL not set): ${query}`)
+    
+    // Return mock data based on query patterns
+    if (query.toLowerCase().includes('count')) {
+      return [{ count: 0 }]
+    }
+    if (query.toLowerCase().includes('sum')) {
+      return [{ total: 0 }]
+    }
+    return []
+  }
+}
+
+export const sql = (process.env.DATABASE_URL && process.env.DATABASE_URL.trim() !== "") 
+  ? neon(process.env.DATABASE_URL) 
+  : createMockSql() as any
 
 export type Product = {
   id: string

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { DemoModal } from "./demo-modal";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,25 +25,25 @@ export function Header() {
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
           <Link
-            href="#products"
+            href="/#products"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Products
           </Link>
           <Link
-            href="#features"
+            href="/#features"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Features
           </Link>
           <Link
-            href="#pricing"
+            href="/#pricing"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Pricing
           </Link>
           <Link
-            href="#contact"
+            href="/#contact"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             Contact
@@ -50,12 +51,12 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-4 md:flex">
-          <Button variant="ghost" size="sm" asChild>
+          {/* <Button variant="ghost" size="sm" asChild>
             <Link href="/login">Sign In</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/signup">Get Started</Link>
-          </Button>
+          </Button> */}
+          <DemoModal>
+            <Button size="sm">Get Started</Button>
+          </DemoModal>
         </div>
 
         {/* Mobile Menu Button */}
@@ -77,36 +78,36 @@ export function Header() {
         <div className="border-t border-border bg-background px-6 py-4 md:hidden">
           <div className="flex flex-col gap-4">
             <Link
-              href="#products"
+              href="/#products"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Products
             </Link>
             <Link
-              href="#features"
+              href="/#features"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Features
             </Link>
             <Link
-              href="#pricing"
+              href="/#pricing"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Pricing
             </Link>
             <Link
-              href="#contact"
+              href="/#contact"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Contact
             </Link>
             <div className="flex flex-col gap-2 pt-4">
-              <Button variant="ghost" size="sm" asChild>
+              {/* <Button variant="ghost" size="sm" asChild>
                 <Link href="/login">Sign In</Link>
-              </Button>
-              <Button size="sm" asChild>
-                <Link href="/signup">Get Started</Link>
-              </Button>
+              </Button> */}
+              <DemoModal>
+                <Button size="sm" className="w-full">Get Started</Button>
+              </DemoModal>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Field, FieldGroup, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { ArrowLeft, Mail, CheckCircle } from "lucide-react"
+import { Header } from "@/components/header"
 
 export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -22,74 +23,54 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-background">
-      {/* Left Panel - Branding */}
-      <div className="hidden w-1/2 flex-col justify-between bg-card p-12 lg:flex">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent">
-            <span className="text-sm font-bold text-accent-foreground">SC</span>
-          </div>
-          <span className="text-xl font-semibold text-foreground">SaaS Controllers</span>
-        </Link>
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+      <div className="flex flex-1 pt-24">
+        {/* Left Panel - Branding */}
+        <div className="hidden w-1/2 flex-col justify-between bg-card p-12 lg:flex">
+          <div className="space-y-6">
+            <h1 className="text-4xl font-bold leading-tight text-foreground text-balance">
+              Reset your password securely
+            </h1>
+            <p className="text-lg text-muted-foreground text-pretty">
+              We take security seriously. Your password reset link will expire in 24 hours for added protection.
+            </p>
 
-        <div className="space-y-6">
-          <h1 className="text-4xl font-bold leading-tight text-foreground text-balance">
-            Reset your password securely
-          </h1>
-          <p className="text-lg text-muted-foreground text-pretty">
-            We take security seriously. Your password reset link will expire in 24 hours for added protection.
-          </p>
-
-          <div className="space-y-4 pt-6 rounded-lg border border-border bg-background/50 p-6">
-            <h3 className="font-medium text-foreground">Security Tips</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Use a unique password for each account
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Enable two-factor authentication
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Never share your password with anyone
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Use a password manager for added security
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <p className="text-sm text-muted-foreground">
-          Need help? Contact our{" "}
-          <Link href="/support" className="text-accent hover:text-accent/80">
-            support team
-          </Link>
-        </p>
-      </div>
-
-      {/* Right Panel - Forgot Password Form */}
-      <div className="flex w-full flex-col lg:w-1/2">
-        <div className="flex items-center justify-between p-6 lg:p-8">
-          <Link
-            href="/login"
-            className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to login
-          </Link>
-          <Link href="/" className="flex items-center gap-2 lg:hidden">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-              <span className="text-xs font-bold text-accent-foreground">SC</span>
+            <div className="space-y-4 pt-6 rounded-lg border border-border bg-background/50 p-6">
+              <h3 className="font-medium text-foreground">Security Tips</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Use a unique password for each account
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Enable two-factor authentication
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Never share your password with anyone
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Use a password manager for added security
+                </li>
+              </ul>
             </div>
-          </Link>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            Need help? Contact our{" "}
+            <Link href="/support" className="text-accent hover:text-accent/80">
+              support team
+            </Link>
+          </p>
         </div>
 
-        <div className="flex flex-1 items-center justify-center px-6 pb-12 lg:px-12">
-          <div className="w-full max-w-md space-y-8">
+        {/* Right Panel - Forgot Password Form */}
+        <div className="flex w-full flex-col lg:w-1/2">
+          <div className="flex flex-1 items-center justify-center px-6 pb-12 lg:px-12">
+            <div className="w-full max-w-md space-y-8">
             {!isSubmitted ? (
               <>
                 <div className="space-y-2 text-center">
@@ -167,6 +148,7 @@ export default function ForgotPasswordPage() {
                 </Button>
               </div>
             )}
+            </div>
           </div>
         </div>
       </div>

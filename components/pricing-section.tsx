@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { DemoModal } from "./demo-modal";
 
 const plans = [
   {
@@ -115,12 +116,14 @@ export function PricingSection() {
                     </li>
                   ))}
                 </ul>
-                <Button
-                  className="w-full"
-                  variant={plan.highlighted ? "default" : "outline"}
-                >
-                  {plan.cta}
-                </Button>
+                <DemoModal>
+                  <Button
+                    className="w-full"
+                    variant={plan.highlighted ? "default" : "outline"}
+                  >
+                    {plan.cta}
+                  </Button>
+                </DemoModal>
               </CardContent>
             </Card>
           ))}
