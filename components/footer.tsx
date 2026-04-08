@@ -9,8 +9,8 @@ const footerLinks = {
     { name: "API", href: "#" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
+    { name: "About", href: "/#features" },
+    { name: "Blog", href: "/blog" },
     { name: "Careers", href: "#" },
     { name: "Press", href: "#" },
     { name: "Partners", href: "#" },
@@ -23,8 +23,8 @@ const footerLinks = {
     { name: "Case Studies", href: "#" },
   ],
   legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
     { name: "Security", href: "#" },
     { name: "GDPR", href: "#" },
   ],

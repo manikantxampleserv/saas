@@ -70,3 +70,22 @@ ALTER TABLE "Subscription" ADD CONSTRAINT "Subscription_productId_fkey"
 ALTER TABLE "Subscription" DROP CONSTRAINT IF EXISTS "Subscription_pricingPlanId_fkey";
 ALTER TABLE "Subscription" ADD CONSTRAINT "Subscription_pricingPlanId_fkey" 
   FOREIGN KEY ("pricingPlanId") REFERENCES "PricingPlan"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Create BlogPost table
+CREATE TABLE IF NOT EXISTS "BlogPost" (
+  "id" TEXT NOT NULL,
+  "title" TEXT NOT NULL,
+  "description" TEXT NOT NULL,
+  "slug" TEXT NOT NULL,
+  "date" TEXT NOT NULL,
+  "author" TEXT NOT NULL,
+  "category" TEXT NOT NULL,
+  "content" TEXT NOT NULL,
+  "published" BOOLEAN NOT NULL DEFAULT true,
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP(3) NOT NULL,
+  CONSTRAINT "BlogPost_pkey" PRIMARY KEY ("id")
+);
+
+-- Create unique index on BlogPost slug
+CREATE UNIQUE INDEX IF NOT EXISTS "BlogPost_slug_key" ON "BlogPost"("slug");

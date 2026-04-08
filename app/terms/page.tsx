@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { Header } from "@/components/header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Terms and conditions for using MKX Industries enterprise business solutions.",
+};
 
 export default function TermsPage() {
   const lastUpdated = "April 7, 2026";

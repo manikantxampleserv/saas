@@ -73,3 +73,17 @@ export type SubscriptionWithDetails = Subscription & {
   planName: string
   planPrice: number
 }
+
+export type BlogPost = {
+  id: string
+  title: string
+  description: string
+  slug: string
+  date: string
+  author: string
+  category: string
+  content: string
+  published: boolean
+  createdAt: Date
+  updatedAt: Date
+}

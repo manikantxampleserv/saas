@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, HeartHandshake, ShoppingCart, ArrowRight, Check } from "lucide-react"
 import { useState } from "react"
+import { DemoModal } from "./demo-modal"
 
 const products = [
   {
@@ -97,10 +98,12 @@ export function ProductsSection() {
               <CardDescription className="text-base">{activeProduct.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="gap-2">
-                Learn More
-                <ArrowRight className="h-4 w-4" />
-              </Button>
+              <DemoModal>
+                <Button className="gap-2">
+                  Learn More
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </DemoModal>
             </CardContent>
           </Card>
 

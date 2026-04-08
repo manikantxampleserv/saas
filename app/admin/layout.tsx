@@ -15,6 +15,7 @@ import {
   X,
   User,
   ChevronDown,
+  FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -33,6 +34,7 @@ const navigation = [
   { name: "Pricing", href: "/admin/pricing", icon: DollarSign },
   { name: "Users", href: "/admin/users", icon: Users },
   { name: "Subscriptions", href: "/admin/subscriptions", icon: CreditCard },
+  { name: "Blog", href: "/admin/blog", icon: FileText },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
 

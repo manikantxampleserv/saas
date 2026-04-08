@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { Header } from "@/components/header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Privacy policy and data protection practices of MKX Industries Pvt Ltd.",
+};
 
 export default function PrivacyPage() {
   const lastUpdated = "April 7, 2026";
