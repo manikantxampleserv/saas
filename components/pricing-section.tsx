@@ -100,7 +100,7 @@ export function PricingSection() {
                   <span className="text-4xl font-bold text-foreground">
                     {plan.price}
                   </span>
-                  <span className="text-muted-foreground">{plan.period}</span>
+                  <span className="text-muted-foreground ">{plan.period}</span>
                 </div>
               </CardHeader>
               <CardContent>
