@@ -9,16 +9,16 @@ const protectedPaths = ["/admin"];
 const publicPaths = ["/", "/login", "/signup", "/forgot-password"];
 
 /**
- * Middleware function to handle authentication and authorization
+ * Proxy function to handle authentication and authorization
  * @param request - The incoming Next.js request
  * @returns NextResponse with appropriate redirect or continuation
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  console.log("Middleware - Path:", pathname);
+  console.log("Proxy - Path:", pathname);
   console.log(
-    "Middleware - Cookies:",
+    "Proxy - Cookies:",
     request.cookies.get("auth-token")?.value ? "Token present" : "No token",
   );
 
@@ -28,14 +28,14 @@ export async function middleware(request: NextRequest) {
   const isPublicPath = publicPaths.some((path) => pathname === path);
 
   console.log(
-    "Middleware - Protected:",
+    "Proxy - Protected:",
     isProtectedPath,
     "Public:",
     isPublicPath,
   );
 
   if (isPublicPath) {
-    console.log("Middleware - Allowing public path");
+    console.log("Proxy - Allowing public path");
     return NextResponse.next();
   }
 
@@ -43,34 +43,34 @@ export async function middleware(request: NextRequest) {
     const token = request.cookies.get("auth-token")?.value;
 
     if (!token) {
-      console.log("Middleware - No token, redirecting to login");
+      console.log("Proxy - No token, redirecting to login");
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
     try {
       const { payload } = await jwtVerify(token, secret);
-      console.log("Middleware - Token decoded:", payload);
+      console.log("Proxy - Token decoded:", payload);
 
       if (pathname.startsWith("/admin") && payload.role !== "admin") {
-        console.log("Middleware - Not admin role, redirecting to login");
+        console.log("Proxy - Not admin role, redirecting to login");
         return NextResponse.redirect(new URL("/login", request.url));
       }
 
-      console.log("Middleware - Access granted");
+      console.log("Proxy - Access granted");
       return NextResponse.next();
     } catch (error) {
-      console.log("Middleware - Invalid token, redirecting to login:", error);
+      console.log("Proxy - Invalid token, redirecting to login:", error);
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
 
-  console.log("Middleware - Default allow");
+  console.log("Proxy - Default allow");
   return NextResponse.next();
 }
 
 /**
- * Configuration for the middleware matcher
- * Defines which paths the middleware should run on
+ * Configuration for the proxy matcher
+ * Defines which paths the proxy should run on
  */
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|public).*)"],
