@@ -2,7 +2,7 @@ import { SignJWT } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
 // Single admin credentials (in production, use environment variables)
-const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "admin@saascontrollers.com").replace(/"/g, "");
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "admin@mkxtechnologies.com").replace(/"/g, "");
 const ADMIN_PASSWORD = (process.env.ADMIN_PASSWORD || "admin123").replace(/"/g, "");
 
 const JWT_SECRET = (process.env.JWT_SECRET || "MKX").replace(/"/g, "");

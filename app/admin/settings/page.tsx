@@ -29,11 +29,11 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="siteName">Site Name</Label>
-              <Input id="siteName" defaultValue="SaaS Controllers" />
+              <Input id="siteName" defaultValue="MKX Technologies" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="supportEmail">Support Email</Label>
-              <Input id="supportEmail" type="email" defaultValue="support@saascontrollers.com" />
+              <Input id="supportEmail" type="email" defaultValue="support@mkxtechnologies.com" />
             </div>
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">

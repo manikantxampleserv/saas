@@ -45,7 +45,7 @@ export function DemoModal({ children }: DemoModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
       const response = await fetch("/api/demo", {
         method: "POST",
@@ -102,7 +102,7 @@ export function DemoModal({ children }: DemoModalProps) {
             <DialogHeader className="space-y-2">
               <DialogTitle className="text-2xl">Demo Request Received</DialogTitle>
               <DialogDescription className="text-base">
-                Thank you for your interest in MKX Industries Pvt Ltd! Our team will contact you within 24 hours to schedule your personalized demo.
+                Thank you for your interest in MKX Technologies Pvt Ltd! Our team will contact you within 24 hours to schedule your personalized demo.
               </DialogDescription>
             </DialogHeader>
             <div className="mt-6 w-full rounded-lg border border-border bg-secondary/50 p-4">
@@ -129,7 +129,7 @@ export function DemoModal({ children }: DemoModalProps) {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="mt-4 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input
@@ -183,7 +183,7 @@ export function DemoModal({ children }: DemoModalProps) {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="companySize">Company Size</Label>
                   <Select
@@ -192,7 +192,7 @@ export function DemoModal({ children }: DemoModalProps) {
                       setFormData({ ...formData, companySize: value })
                     }
                   >
-                    <SelectTrigger id="companySize">
+                    <SelectTrigger id="companySize" className="w-full">
                       <SelectValue placeholder="Select size" />
                     </SelectTrigger>
                     <SelectContent>
@@ -212,7 +212,7 @@ export function DemoModal({ children }: DemoModalProps) {
                       setFormData({ ...formData, product: value })
                     }
                   >
-                    <SelectTrigger id="product">
+                    <SelectTrigger id="product" className="w-full">
                       <SelectValue placeholder="Select product" />
                     </SelectTrigger>
                     <SelectContent>

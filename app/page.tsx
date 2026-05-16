@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | MKX Industries Enterprise Solutions",
+  title: "Home | MKX Technologies Enterprise Solutions",
   description: "Enterprise-grade HRMS, CRMS, and POS systems built for scale and business growth. Start your 14-day free trial today.",
 };
 

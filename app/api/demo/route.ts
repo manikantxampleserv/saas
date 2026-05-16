@@ -21,15 +21,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Professional Email Styling (Matching Website Theme)
     const brandColor = "#A70400";
-    const backgroundColor = "#0a0a0a"; // Dark background like the website
-    const cardBackground = "#141414"; // Slightly lighter dark for the card
+    const backgroundColor = "#0a0a0a"; 
+    const cardBackground = "#141414"; 
     const textColor = "#ffffff";
     const mutedTextColor = "#a3a3a3";
     const borderColor = "#262626";
 
-    // Logo Template (Using actual icon.svg content) - More responsive
     const logoHtml = `
       <div style="margin-bottom: 16px; text-align: left;">
         <svg width="130" height="30" viewBox="0 0 500 110" xmlns="http://www.w3.org/2000/svg" style="display: block; max-width: 100%; height: auto;">
@@ -43,7 +41,6 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // Prepare the email content for yourself (Admin)
     const emailToSelf = {
       subject: `[LEAD] New Demo Request: ${firstName} ${lastName}`,
       html: `
@@ -89,7 +86,7 @@ export async function POST(request: Request) {
 
     // Prepare the confirmation email for the user
     const confirmationEmail = {
-      subject: "Demo Request Confirmed - MKX Industries Pvt Ltd",
+      subject: "Demo Request Confirmed - MKX Technologies Pvt Ltd",
       html: `
         <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background-color: ${backgroundColor}; margin: 0; padding: 0; color: ${textColor};">
           <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: ${backgroundColor};">
@@ -101,7 +98,7 @@ export async function POST(request: Request) {
                       ${logoHtml}
                       <h2 style="font-size: 22px; font-weight: 700; margin: 0 0 14px; color: ${textColor}; line-height: 1.2;">Hello ${firstName},</h2>
                       <p style="font-size: 14px; line-height: 1.6; color: #d4d4d4; margin: 0 0 20px;">
-                        Thank you for choosing <strong>MKX Industries Pvt Ltd</strong>. We have successfully received your request for a personalized demo of our <strong>${product.toUpperCase()}</strong> system.
+                        Thank you for choosing <strong>MKX Technologies Pvt Ltd</strong>. We have successfully received your request for a personalized demo of our <strong>${product.toUpperCase()}</strong> system.
                       </p>
                       
                       <div style="background-color: ${backgroundColor}; border-left: 3px solid ${brandColor}; padding: 16px; border-radius: 4px; margin: 0 0 20px;">
@@ -112,14 +109,14 @@ export async function POST(request: Request) {
                       </div>
                       
                       <p style="font-size: 14px; line-height: 1.6; color: #d4d4d4; margin: 0 0 24px;">
-                        Discover how our solutions can transform your business operations. Visit our <a href="https://mkx-industries.com" style="color: ${brandColor}; text-decoration: none; font-weight: 600;">Resource Center</a> for more information.
+                        Discover how our solutions can transform your business operations. Visit our <a href="https://mkx-technologies.com" style="color: ${brandColor}; text-decoration: none; font-weight: 600;">Resource Center</a> for more information.
                       </p>
                       
                       <div style="border-top: 1px solid ${borderColor}; padding-top: 20px; text-align: center;">
                         <p style="font-size: 12px; color: ${mutedTextColor}; margin: 0 0 4px;">Best regards,</p>
-                        <p style="font-size: 15px; font-weight: 800; color: ${textColor}; margin: 0; text-transform: uppercase; letter-spacing: 1px;">MKX Industries</p>
+                        <p style="font-size: 15px; font-weight: 800; color: ${textColor}; margin: 0; text-transform: uppercase; letter-spacing: 1px;">MKX Technologies</p>
                         <p style="font-size: 10px; color: ${mutedTextColor}; margin: 20px 0 0;">
-                          &copy; 2026 MKX Industries Pvt Ltd. All rights reserved.
+                          &copy; 2026 MKX Technologies Pvt Ltd. All rights reserved.
                         </p>
                       </div>
                     </td>
@@ -132,23 +129,20 @@ export async function POST(request: Request) {
       `,
     };
 
-    // Send email to yourself (admin notification)
     const adminRes = await transporter.sendMail({
       from: `"MKX Demo Alerts" <${process.env.SMTP_USER}>`,
-      to: 'mkxindustries@gmail.com',
+      to: 'mkxtechnologies@gmail.com',
       subject: emailToSelf.subject,
       html: emailToSelf.html,
     });
 
-    // Send confirmation email to the user
     const userRes = await transporter.sendMail({
-      from: `"MKX Industries Pvt Ltd" <${process.env.SMTP_USER}>`,
+      from: `"MKX Technologies Pvt Ltd" <${process.env.SMTP_USER}>`,
       to: email,
       subject: confirmationEmail.subject,
       html: confirmationEmail.html,
     });
 
-    // Log the submission and Nodemailer responses
     console.log("Demo Request Submitted:", { 
       emailToSelf, 
       confirmationEmail,
@@ -156,7 +150,6 @@ export async function POST(request: Request) {
       userEmailResponse: userRes
     });
 
-    // Return success response
     return NextResponse.json({ success: true, message: "Demo request received successfully" });
 
   } catch (error) {

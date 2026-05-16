@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: Props) {
               "Technology is best when it brings people together and makes processes invisible."
             </blockquote>
             <p>
-              At MKX Industries, we focus on making the technology "invisible" by ensuring our tools 
+              At MKX Technologies, we focus on making the technology "invisible" by ensuring our tools 
               are intuitive, fast, and deeply integrated. Our mission is to empower you to focus 
               on what matters most: your customers and your employees.
             </p>

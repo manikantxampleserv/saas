@@ -5,12 +5,19 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { DemoModal } from "./demo-modal";
+import { motion } from "framer-motion";
+import { slideDown } from "@/lib/animations";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <motion.header
+      initial="initial"
+      animate="animate"
+      variants={slideDown}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md"
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link
           href="/"
@@ -18,7 +25,7 @@ export function Header() {
         >
           <span className="rounded-full h-10 w-10 bg-[#A70400]"></span>
           <span className="text-2xl absolute left-[10.5px] tracking-wider font-bold font-orbitron stroke-1 text-foreground text-stroke-black">
-            MKX Industries
+            MKX Technologies
           </span>
         </Link>
 
@@ -51,9 +58,6 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-4 md:flex">
-          {/* <Button variant="ghost" size="sm" asChild>
-            <Link href="/login">Sign In</Link>
-          </Button> */}
           <DemoModal>
             <Button size="sm">Get Started</Button>
           </DemoModal>
@@ -112,6 +116,6 @@ export function Header() {
           </div>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

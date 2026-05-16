@@ -3,32 +3,51 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { DemoModal } from "@/components/demo-modal";
+import { motion } from "framer-motion";
+import { slideUp, staggerContainer } from "@/lib/animations";
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20">
+    <section className="relative flex flex-col items-center px-6 pt-28 lg:pt-28 md:justify-center">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-size-[64px_64px]" />
 
-      <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5">
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+        className="relative z-10 mx-auto max-w-full lg:max-w-5xl text-center"
+      >
+        <motion.div
+          variants={slideUp}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5"
+        >
           <span className="h-2 w-2 rounded-full bg-accent" />
-          <span className="text-sm text-muted-foreground">
-            Enterprise Grade Solutions For Modern Businesses
+          <span className="lg:text-sm text-[10px] text-muted-foreground">
+            Enterprise grade Solutions For Modern Businesses
           </span>
-        </div>
+        </motion.div>
 
-        <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight text-foreground md:text-7xl">
-          The complete platform
-          <span className="block">to run your business</span>
-        </h1>
+        <motion.h1
+          variants={slideUp}
+          className="mb-6 text-balance text-3xl font-bold tracking-tight text-foreground md:text-5xl lg:text-7xl"
+        >
+          The complete platform to
+          <span className="block"> run your business</span>
+        </motion.h1>
 
-        <p className="mx-auto mb-10 max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl">
-          MKX Industries brings your team&apos;s toolkit to streamline
+        <motion.p
+          variants={slideUp}
+          className="mx-auto mb-5 max-w-4xl text-pretty text-sm text-muted-foreground md:text-lg lg:text-xl"
+        >
+          MKX Technologies brings your team&apos;s toolkit to streamline
           operations. Securely manage HR, customers, and sales with our
           integrated suite of enterprise solutions.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <motion.div
+          variants={slideUp}
+          className="flex items-center justify-center gap-4"
+        >
           <DemoModal>
             <Button size="lg" className="gap-2">
               Get a Demo
@@ -37,6 +56,7 @@ export function HeroSection() {
           </DemoModal>
           <Button
             size="lg"
+            className="!bg-black"
             variant="outline"
             onClick={() => {
               document
@@ -46,10 +66,16 @@ export function HeroSection() {
           >
             Explore Products
           </Button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="relative z-10 mt-20 w-full border-t border-border">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="relative z-10 mt-10 w-full"
+      >
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
           <div className="text-center md:text-left">
             <p className="text-3xl font-bold text-foreground md:text-4xl">
@@ -78,7 +104,7 @@ export function HeroSection() {
             <p className="text-sm text-muted-foreground">faster to scale</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

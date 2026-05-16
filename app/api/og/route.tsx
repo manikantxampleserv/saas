@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     const hasTitle = searchParams.has('title')
     const title = hasTitle
       ? searchParams.get('title')?.slice(0, 100)
-      : 'MKX Industries | Enterprise Solutions'
+      : 'MKX Technologies | Enterprise Solutions'
 
     return new ImageResponse(
       (

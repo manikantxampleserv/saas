@@ -32,9 +32,9 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border px-6 py-12">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-6">
+    <footer className="border-t border-border lg:px-6 py-12">
+      <div className="mx-auto lg:max-w-7xl">
+        <div className="grid gap-8 px-6 md:grid-cols-2 lg:grid-cols-6">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link
@@ -43,11 +43,11 @@ export function Footer() {
             >
               <span className="rounded-full h-10 w-10 bg-[#A70400]"></span>
               <span className="text-2xl absolute left-[10.5px] tracking-wider font-bold font-orbitron stroke-1 text-foreground text-stroke-black">
-                MKX Industries
+                MKX Technologies
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              MKX Industries Pvt Ltd. Enterprise-grade business solutions to
+              MKX Technologies Pvt Ltd. Enterprise-grade business solutions to
               help you scale. HRMS, CRMS, and POS systems built for modern
               businesses.
             </p>
@@ -131,8 +131,8 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} MKX Industries Pvt Ltd. All rights
+          <p className="text-sm text-center lg:text-start text-muted-foreground">
+            &copy; {new Date().getFullYear()} MKX Technologies Pvt Ltd. All rights
             reserved.
           </p>
           <div className="flex items-center gap-4">

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getBlogPosts, staticBlogPosts } from '@/lib/blog'
  
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://mkxindustries.vercel.app'
+  const baseUrl = 'https://mkxtechnologies.vercel.app'
  
   const dbPosts = await getBlogPosts();
   const blogPosts = dbPosts.length > 0 ? dbPosts : staticBlogPosts;

@@ -69,7 +69,7 @@ export default function SignupPage() {
       toast.dismiss(loadingToast);
       if (response.ok && data.success) {
         toast.success(
-          "Account created successfully! Welcome to SaaS Controllers!",
+          "Account created successfully! Welcome to MKX Technologies!",
         );
         router.push("/");
       } else {
@@ -141,7 +141,7 @@ export default function SignupPage() {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          Join 500+ companies already using SaaS Controllers
+          Join 500+ companies already using MKX Technologies
         </p>
       </div>
 
